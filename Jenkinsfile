@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     def mdkquery = httpRequest url: 'https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json', consoleLogResponseBody: true
-                    print(mdkquery.content['promotions'])
+                    print(new JsonSlurper().parseText(mdkquery.content)['promotions'])
                 }
             }
         }
