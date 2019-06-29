@@ -26,7 +26,7 @@ pipeline {
                     env.MCPVERSION = new groovy.json.JsonSlurper().parseText(mcpquery.content)["${MC_VERSION}"]['snapshot'][0]
                 }
                 discordSend(
-                    title: "Job: MDK ${MDKVERSION} MCP ${MCPVERSION} Build Testing Started",
+                    title: "Job: MDK ${MDKVERSION} MCP ${MCPVERSION} Build #${BUILD_NUMBER} Testing Started",
                     successful: true,
                     result: 'ABORTED', //White border
                     thumbnail: JENKINS_HEAD,
@@ -46,7 +46,7 @@ pipeline {
             post {
                 always {
                     discordSend(
-                        title: "Job: MDK ${MDKVERSION} MCP ${MCPVERSION} Build Testing Finished ${currentBuild.currentResult}",
+                        title: "Job: MDK ${MDKVERSION} MCP ${MCPVERSION} Build #${BUILD_NUMBER} Testing Finished ${currentBuild.currentResult}",
                         successful: currentBuild.resultIsBetterOrEqualTo("SUCCESS"),
                         result: currentBuild.currentResult,
                         thumbnail: JENKINS_HEAD,
