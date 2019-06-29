@@ -38,7 +38,7 @@ pipeline {
         }
         stage('buildandtest') {
             steps {
-                sh './gradlew ${GRADLE_ARGS} --refresh-dependencies -PJENKINS_MC_VERSION=${MC_VERSION} -PJENKINS_MCP_VERSION=${MCP_VERSION} -PJENKINS_FORGE_VERSION=${MDK_VERSION} --continue build test'
+                sh './gradlew ${GRADLE_ARGS} --refresh-dependencies -PJENKINS_MC_VERSION=${MC_VERSION} -PJENKINS_MCP_VERSION=${MCPVERSION} -PJENKINS_FORGE_VERSION=${MDKVERSION} --continue build test'
             }
             post {
                 always {
