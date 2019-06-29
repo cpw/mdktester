@@ -19,7 +19,7 @@ pipeline {
                     def mdkquery = httpRequest url: 'https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json', consoleLogResponseBody: true
                     env.MDKVERSION = new groovy.json.JsonSlurper().parseText(mdkquery.content)['promos']['1.14.3-latest']
                     def mcpquery = httpRequest url: 'http://export.mcpbot.bspk.rs/versions.json', consoleLogResponseBody: true
-                    env.MCPVERSION = new groovy.json.JsonSlurper().parseText(mcpquery.content)['1.14.3']['0']
+                    env.MCPVERSION = new groovy.json.JsonSlurper().parseText(mcpquery.content)['1.14.3']['snapshot'][0]
                 }
                 discordSend(
                     title: "Job: MDK and MCP Testing : MDK ${MDKVERSION} MCP ${MCPVERSION} Started",
