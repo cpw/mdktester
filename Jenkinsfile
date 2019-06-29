@@ -16,8 +16,8 @@ pipeline {
         stage('query') {
             steps {
                 script {
-                    def mdkquery = httpRequest 'https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json'
-                    env.MDKVERSION = mdkquery.response['promos']['1.14.3-latest']
+                    def mdkquery = httpRequest url: 'https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json' consoleLogResponseBody: true acceptType: APPLICATION_JSON
+                    print(mdkquery.response)
                 }
             }
         }
