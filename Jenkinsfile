@@ -17,9 +17,9 @@ pipeline {
         stage('query') {
             steps {
                 script {
-                    def mdkquery = httpRequest url: 'https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json', consoleLogResponseBody: true
+                    def mdkquery = httpRequest url: 'https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json'
                     env.MDKVERSION = new groovy.json.JsonSlurper().parseText(mdkquery.content)['promos']["${MC_VERSION}-latest"]
-                    def mcpquery = httpRequest url: 'http://export.mcpbot.bspk.rs/versions.json', consoleLogResponseBody: true
+                    def mcpquery = httpRequest url: 'http://export.mcpbot.bspk.rs/versions.json'
                     env.MCPVERSION = new groovy.json.JsonSlurper().parseText(mcpquery.content)["${MC_VERSION}"]['snapshot'][0]
                 }
                 discordSend(
@@ -38,7 +38,7 @@ pipeline {
         }
         stage('buildandtest') {
             steps {
-                sh './gradlew ${GRADLE_ARGS} --refresh-dependencies -PJENKINS_MC_VERSION=${MC_VERSION} -PJENKINS_MCP_VERSION=${MCPVERSION} -PJENKINS_FORGE_VERSION=${MDKVERSION} --continue eclipse build'
+                sh './gradlew ${GRADLE_ARGS} --refresh-dependencies -PJENKINS_MC_VERSION=${MC_VERSION} -PJENKINS_MCP_VERSION=${MCPVERSION} -PJENKINS_FORGE_VERSION=${MDKVERSION} eclipse build'
             }
             post {
                 always {
