@@ -16,7 +16,7 @@ pipeline {
         stage('query') {
             steps {
                 script {
-                    def mdkquery = httpRequest url: 'https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json' consoleLogResponseBody: true acceptType: APPLICATION_JSON
+                    def mdkquery = httpRequest url: 'https://files.minecraftforge.net/maven/net/minecraftforge/forge/promotions_slim.json', consoleLogResponseBody: true, acceptType: APPLICATION_JSON
                     print(mdkquery.response)
                 }
             }
