@@ -4,6 +4,9 @@ pipeline {
             image 'gradlewrapper:latest'
             args '-v gradlecache:/gradlecache'
         }
+        triggers {
+                cron('H(20-59) 8 * * *')
+        }
     }
     environment {
         GRADLE_ARGS = '-Dorg.gradle.daemon.idletimeout=5000'
