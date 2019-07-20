@@ -13,7 +13,7 @@ pipeline {
         DISCORD_WEBHOOK = credentials('forge-discord-jenkins-webhook')
         DISCORD_PREFIX = "Job: MDK TESTING Build: #${BUILD_NUMBER}"
         JENKINS_HEAD = 'https://wiki.jenkins-ci.org/download/attachments/2916393/headshot.png'
-        MC_VERSION = '1.14.3'
+        MC_VERSION = '1.14.4'
     }
 
     stages {
