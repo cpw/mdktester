@@ -19,12 +19,11 @@ archivesBaseName = 'modid'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
-def mcversion=project.property('JENKINS_MC_VERSION')
 def mcpversion=project.property('JENKINS_MCP_VERSION')
 def forgeversion=project.property('JENKINS_FORGE_VERSION')
 
-def mappingsversion = "${mcpversion}-${mcversion}"
-def forgedep = "${mcversion}-${forgeversion}"
+def mappingsversion = "${mcpversion}"
+def forgedep = "${forgeversion}"
 
 minecraft {
     mappings channel: 'snapshot', version: mappingsversion
